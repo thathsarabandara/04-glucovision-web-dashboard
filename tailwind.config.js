@@ -8,14 +8,17 @@ export default {
     extend: {
       colors: {
         brand: {
-          dark: '#0f172a',
+          dark: '#0F172A',
           darker: '#020617',
-          light: '#f8fafc',
-          accent: '#0d9488',
-          secondary: '#0284c7',
-          success: '#10b981',
-          warning: '#f59e0b',
-          danger: '#ef4444',
+          light: '#F7FAFC',
+          accent: '#2563EB',      // Primary Blue
+          secondary: '#60A5FA',   // Secondary Blue
+          teal: '#14B8A6',        // Accent Teal
+          success: '#22C55E',     // Success (healthy)
+          warning: '#F59E0B',     // Warning
+          danger: '#EF4444',      // Danger (glucose alert)
+          textPrimary: '#0F172A',
+          textSecondary: '#475569',
         },
         glass: {
           white: 'rgba(255, 255, 255, 0.1)',
