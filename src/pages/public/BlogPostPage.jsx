@@ -11,6 +11,7 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { blogPosts } from '../../utils/blogData';
+import { BlogRenderer } from '../../components/BlogRenderer';
 
 export function BlogPostPage() {
   const { slug } = useParams();
@@ -117,52 +118,7 @@ export function BlogPostPage() {
         <div className="blog-content glass-card-vibrant p-10 sm:p-20 shadow-xl shadow-slate-200">
           <div className="absolute inset-0 pattern-grid opacity-[0.03]"></div>
           <div className="relative z-10">
-            {post.content.map((block, idx) => {
-              if (block.type === 'paragraph') {
-                return <p key={idx}>{block.text}</p>;
-              }
-              if (block.type === 'heading') {
-                const Tag = `h${block.level}`;
-                return <Tag key={idx}>{block.text}</Tag>;
-              }
-              if (block.type === 'code') {
-                return (
-                  <div key={idx} className="relative group">
-                    <div className="absolute top-4 right-6 text-[10px] font-black text-white/20 uppercase tracking-widest group-hover:text-white/40 transition-colors">
-                      {block.language}
-                    </div>
-                    <pre>
-                      <code>{block.code}</code>
-                    </pre>
-                  </div>
-                );
-              }
-              if (block.type === 'image') {
-                return (
-                  <figure key={idx} className="my-16">
-                    <img src={block.url} alt={block.caption} className="w-full" />
-                    {block.caption && <figcaption className="text-center text-xs font-bold text-slate-400 mt-4 uppercase tracking-widest">{block.caption}</figcaption>}
-                  </figure>
-                );
-              }
-              if (block.type === 'video') {
-                return (
-                  <figure key={idx} className="my-16">
-                    <div className="aspect-video w-full rounded-[2.5rem] border-8 border-white shadow-2xl overflow-hidden bg-slate-900">
-                      <iframe 
-                        src={block.url} 
-                        className="w-full h-full" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowFullScreen
-                        title={block.caption || 'Blog Video'}
-                      ></iframe>
-                    </div>
-                    {block.caption && <figcaption className="text-center text-xs font-bold text-slate-400 mt-6 uppercase tracking-widest">{block.caption}</figcaption>}
-                  </figure>
-                );
-              }
-              return null;
-            })}
+            <BlogRenderer content={post.content} />
           </div>
         </div>
 
